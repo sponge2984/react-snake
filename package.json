@@ -1,8 +1,8 @@
 {
-  "name": "my-app",
+  "name": "react-snake",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://sponge2984.github.io/react-snake",
+  "homepage": "https://sponge2984.github.io/react-snake/",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
