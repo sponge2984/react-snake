@@ -9,6 +9,7 @@ import {
   DIRECTIONS,
 } from './constants';
 import appleIcon from './logo.svg'; //'./image/Apple.png';
+import './App.css';
 
 const App = () => {
   const canvasRef = useRef(null);
@@ -77,8 +78,6 @@ const App = () => {
 
   useEffect(() => {
     const context = canvasRef.current.getContext('2d');
-    const appleImg = appleRef.current;
-    console.log('appleImg: ', appleImg);
     context.setTransform(SCALE, 0, 0, SCALE, 0, 0);
     context.clearRect(0, 0, CANVAS_SIZE[0], CANVAS_SIZE[1]);
     context.fillStyle = 'pink';
@@ -90,22 +89,34 @@ const App = () => {
   useInterval(() => gameLoop(), speed);
 
   return (
-    <div role="button" tabIndex="0" onKeyDown={(e) => moveSnake(e)}>
+    <div
+      role='button'
+      tabIndex='0'
+      onKeyDown={(e) => moveSnake(e)}
+      className='gameContainer'>
+      <div className='gameInfo'>
+        <div>Score：{snake.length}</div>
+        <div>Speed：{speed ? speed : 0}</div>
+        <button className='startGameBtn' onClick={startGame}>
+          Start Game
+        </button>
+      </div>
+      {gameOver && <div className='gameOverInfo'>GAME OVER!!!</div>}
       <canvas
-        style={{ border: '1px solid black' }}
+        style={{
+          border: '1px solid black',
+        }}
         ref={canvasRef}
         width={`${CANVAS_SIZE[0]}px`}
         height={`${CANVAS_SIZE[1]}px`}
       />
-      <img
+      {/*<img
         ref={appleRef}
         src={appleIcon}
-        className="hidden"
+        className='hidden'
         style={{ width: `${SCALE}px`, height: `${SCALE}px` }}
-        alt="圖片失效就顯示這段文字"
-      />
-      {gameOver && <div>GAME OVER!!!</div>}
-      <button onClick={startGame}>Start Game</button>
+        alt='圖片失效就顯示這段文字'
+      />*/}
     </div>
   );
 };
